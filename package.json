@@ -7,6 +7,10 @@
   "author": "Arnaud Morisset <arnaudmorisset@protonmail.com>",
   "license": "MIT",
   "devDependencies": {
+    "@types/node": "^16.11.0",
     "typescript": "^4.4.4"
+  },
+  "dependencies": {
+    "winston": "^3.3.3"
   }
 }

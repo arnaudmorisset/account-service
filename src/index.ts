@@ -1,5 +1,8 @@
-const main = (msg: string) => {
-  console.log(msg);
+import Logger from "./lib/logger";
+
+const main = () => {
+  const logger = Logger.init();
+  logger.add("service started");
 };
 
-main("Hello, World!");
+main();
