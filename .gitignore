@@ -6,3 +6,6 @@ dist/
 
 # Ignore logs
 yarn-error.log
+
+# Ignore config.json
+config.json

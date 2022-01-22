@@ -2,7 +2,7 @@
   "name": "account_service",
   "version": "1.0.0",
   "description": "A service to handle user's accounts.",
-  "main": "dist/index.js",
+  "main": "dist/src/index.js",
   "repository": "git@github.com:arnaudmorisset/account-service.git",
   "author": "Arnaud Morisset <arnaudmorisset@protonmail.com>",
   "license": "MIT",
