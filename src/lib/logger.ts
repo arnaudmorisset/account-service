@@ -1,8 +1,7 @@
 import winston from "winston";
 
 interface Logger {
-  logger: winston.Logger,
-  add(msg: string): void
+  add(msg: string): void;
 }
 
 const format = winston.format.printf(({ message, timestamp }) => {
@@ -11,20 +10,20 @@ const format = winston.format.printf(({ message, timestamp }) => {
 
 const init = (): Logger => {
   const logger = winston.createLogger({
-    format: winston.format.combine(winston.format.timestamp({
-      format: "YYYY-MM-DD hh:mm:ss"
-    }), format),
+    format: winston.format.combine(
+      winston.format.timestamp({
+        format: "YYYY-MM-DD hh:mm:ss",
+      }),
+      format
+    ),
     defaultMeta: { service: "account-service" },
-    transports: [
-      new winston.transports.Console()
-    ]
+    transports: [new winston.transports.Console()],
   });
 
   return {
-    logger: logger,
     add: (msg) => {
-      logger.log({ level: "info", message: msg })
-    }
+      logger.log({ level: "info", message: msg });
+    },
   };
 };
 
