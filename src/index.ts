@@ -5,6 +5,7 @@ const main = () => {
   const logger = Logger.init();
   logger.add("service started");
 
+  // This is 💩
   const app = express();
   const port = 8080;
 
