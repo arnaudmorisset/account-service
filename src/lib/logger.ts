@@ -1,7 +1,6 @@
 import winston from "winston";
 
 interface Logger {
-  logger: winston.Logger,
   add(msg: string): void
 }
 
@@ -21,7 +20,6 @@ const init = (): Logger => {
   });
 
   return {
-    logger: logger,
     add: (msg) => {
       logger.log({ level: "info", message: msg })
     }
