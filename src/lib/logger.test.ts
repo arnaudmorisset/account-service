@@ -1,5 +1,5 @@
 import Logger from "./logger";
-import { format } from "winston";
+import winston from "winston";
 
 jest.mock("winston", () => {
   const format = {
@@ -24,9 +24,14 @@ jest.mock("winston", () => {
 
 describe("logger", () => {
   it("should do something", () => {
-    const logger = Logger.init();
-    logger.add("log from test");
+    Logger.init();
 
-    expect(format.printf).toBeCalledTimes(1);
+    expect(winston.createLogger).toBeCalledTimes(1);
+    expect(winston.format.printf).toBeCalledTimes(1);
+    expect(winston.format.combine).toBeCalledTimes(1);
+    expect(winston.format.timestamp).toBeCalledWith({
+      format: "YYYY-MM-DD hh:mm:ss",
+    });
+    expect(winston.transports.Console).toBeCalledTimes(1);
   });
 });
