@@ -1,5 +1,4 @@
 import { WebConfig } from "../configuration/";
-import { Logger } from "../logger";
 
 import express from "express";
 
@@ -7,15 +6,15 @@ type http_verb = "get" | "post" | "put" | "patch" | "delete";
 
 interface HTTPServer {
   handle(method: http_verb, path: string, callback: (req: express.Request, res: express.Response) => void): void
-  listen(): void
+  listen(callback: () => void): void
 }
 
-const init = (config: WebConfig, logger: Logger): HTTPServer => {
+const init = (config: WebConfig): HTTPServer => {
   const app = express();
 
   return {
     handle: (method, path, callback) => { app[method](path, callback) },
-    listen: () => { app.listen(config.port, () => { logger.add("HTTP server started") }) }
+    listen: (callback) => { app.listen(config.port, callback) }
   };
 };
 
