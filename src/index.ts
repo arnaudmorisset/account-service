@@ -1,5 +1,5 @@
 import express from "express";
-import Logger from "./lib/Logger/logger";
+import Logger from "./lib/Logger";
 import Config from "./lib/configuration/configuration";
 
 const logger = Logger.init();
