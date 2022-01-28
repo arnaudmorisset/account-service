@@ -1,10 +1,10 @@
 import Configuration from "../../../config.json"
 
-interface WebConfig {
+export interface WebConfig {
   port: number
 }
 
-interface Config {
+export interface Config {
   web: WebConfig
 }
 
