@@ -1,6 +1,6 @@
 import express from "express";
-import Logger from "./lib/logger/logger";
-import Config from "./lib/configuration/configuration"
+import Logger from "./lib/logger";
+import Config from "./lib/configuration"
 
 const logger = Logger.init();
 logger.add("service started");
