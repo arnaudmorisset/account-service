@@ -1,6 +1,6 @@
 import winston from "winston";
 
-interface Logger {
+export interface Logger {
   add(msg: string): void;
 }
 
