@@ -23,10 +23,6 @@ jest.mock("winston", () => {
   }
 });
 
-// Test Logger
-// NOTE(arnaud): Search how to mock this method call
-// logger.add("log from test");
-
 describe("logger", () => {
   it("should init correctly", () => {
     Logger.init();
