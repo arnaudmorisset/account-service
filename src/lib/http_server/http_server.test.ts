@@ -4,7 +4,7 @@ import Configuration from "../configuration";
 
 jest.mock("../configuration", () => {
   return {
-    load: () => ({ web: { port: 8080 } })
+    load: () => ({ web: { port: 8080 } }),
   };
 });
 
@@ -13,14 +13,20 @@ describe("HTTP Server", () => {
     const config = Configuration.load();
 
     const httpServer = HTTPServer.init(config.web);
-    httpServer.handle("get", "/ping", (_req, res) => { res.send("OK!"); });
+    httpServer.handle("get", "/ping", (_req, res) => {
+      res.send("OK!");
+    });
 
-    httpServer.listen(async () => {
-      const response = await request(`http://localhost:${config.web.port}/ping`);
-      const body = await response.body.text();
+    httpServer
+      .listen(async () => {
+        const response = await request(
+          `http://localhost:${config.web.port}/ping`
+        );
+        const body = await response.body.text();
 
-      expect(response.statusCode).toBe(200);
-      expect(body).toBe("OK!");
-    }).close();
+        expect(response.statusCode).toBe(200);
+        expect(body).toBe("OK!");
+      })
+      .close();
   });
 });
