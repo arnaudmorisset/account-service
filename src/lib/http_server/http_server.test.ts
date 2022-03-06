@@ -13,7 +13,7 @@ describe("HTTP Server", () => {
     const config = Configuration.load();
 
     const httpServer = HTTPServer.init(config.web);
-    httpServer.handle("get", "/ping", (_req, res) => { res.send("OK!") });
+    httpServer.handle("get", "/ping", (_req, res) => { res.send("OK!"); });
 
     // TODO: Shutdown server once the test is over
     httpServer.listen(async () => {
