@@ -1,15 +1,17 @@
-import Logger from "./lib/Logger";
-import Config from "./lib/configuration/configuration";
-import HttpServer from "./lib/http_server";
+import Logger from "./lib/logger";
+import Config from "./lib/configuration";
+import HTTPServer from "./lib/http_server";
 
 const logger = Logger.init();
 logger.add("service started");
 
 const config = Config.load();
-logger.add("config loaded");
+logger.add("configuration loaded");
 
-const httpServer = HttpServer.init(config.web, logger);
+const httpServer = HTTPServer.init(config.web);
 httpServer.handle("get", "/ping", (_req, res) => {
-  res.send("OK");
+  res.send("OK!");
 });
-httpServer.listen();
+httpServer.listen(() => {
+  logger.add("HTTP server started");
+});

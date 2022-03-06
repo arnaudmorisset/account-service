@@ -30,7 +30,7 @@ describe("logger", () => {
     expect(winston.format.printf).toBeCalledTimes(1);
     expect(winston.format.combine).toBeCalledTimes(1);
     expect(winston.format.timestamp).toBeCalledWith({
-      format: "YYYY-MM-DD hh:mm:ss",
+      format: "YYYY-MM-DD HH:mm:ss",
     });
     expect(winston.transports.Console).toBeCalledTimes(1);
   });

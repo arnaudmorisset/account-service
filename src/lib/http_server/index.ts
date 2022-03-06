@@ -1,5 +1,4 @@
-import { Logger } from "../Logger";
-import { WebConfig } from "../configuration/configuration";
+import { WebConfig } from "../configuration/";
 
 import express from "express";
 
@@ -11,20 +10,18 @@ interface HTTPServer {
     path: string,
     callback: (req: express.Request, res: express.Response) => void
   ): void;
-  listen(): void;
+  listen(callback: () => void): void;
 }
 
-const init = (config: WebConfig, logger: Logger): HTTPServer => {
+const init = (config: WebConfig): HTTPServer => {
   const app = express();
 
   return {
     handle: (method, path, callback) => {
       app[method](path, callback);
     },
-    listen: () => {
-      app.listen(config.port, () => {
-        logger.add("HTTP server started");
-      });
+    listen: (callback) => {
+      app.listen(config.port, callback);
     },
   };
 };
