@@ -1,4 +1,4 @@
-import HTTP from "http";
+import { request } from "undici";
 import HTTPServer from "./";
 import Configuration from "../configuration";
 
@@ -13,28 +13,15 @@ describe("HTTP Server", () => {
     const config = Configuration.load();
 
     const httpServer = HTTPServer.init(config.web);
-    httpServer.handle("get", "/ping", (_req, res) => { res.send("OK!") })
+    httpServer.handle("get", "/ping", (_req, res) => { res.send("OK!") });
 
     // TODO: Shutdown server once the test is over
-    httpServer.listen(() => {
-      const options = {
-        hostname: 'localhost',
-        port: config.web.port,
-        path: '/ping',
-        method: 'GET'
-      };
+    httpServer.listen(async () => {
+      const response = await request(`http://localhost:${config.web.port}/ping`);
+      const body = await response.body.text();
 
-      const req = HTTP.request(options, res => {
-        res.on('data', data => {
-          expect(data.toString()).toBe("OK!");
-        });
-      });
-
-      req.on('error', error => {
-        throw new Error(`HTTP request should not failed with error: ${error}`);
-      });
-
-      req.end();
+      expect(response.statusCode).toBe(200);
+      expect(body).toBe("OK!");
     });
   });
 });

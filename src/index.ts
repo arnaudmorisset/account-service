@@ -8,6 +8,6 @@ logger.add("service started");
 const config = Config.load();
 logger.add("configuration loaded");
 
-const httpServer = HTTPServer.init(config.web, logger);
+const httpServer = HTTPServer.init(config.web);
 httpServer.handle("get", "/ping", (_req, res) => { res.send("OK!") })
-httpServer.listen();
+httpServer.listen(() => { logger.add("HTTP server started") });
