@@ -22,6 +22,6 @@ describe("HTTP Server", () => {
 
       expect(response.statusCode).toBe(200);
       expect(body).toBe("OK!");
-    });
+    }).close();
   });
 });
