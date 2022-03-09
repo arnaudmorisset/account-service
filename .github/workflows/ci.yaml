@@ -17,6 +17,3 @@ jobs:
 
       - name: Run tests
         run: yarn test
-
-      - name: Run linter
-        run: yarn run eslint . --ext .ts
