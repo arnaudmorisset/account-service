@@ -7,6 +7,7 @@ jest.mock("winston", () => {
     timestamp: jest.fn(),
     printf: jest.fn()
   };
+  
   const transports = {
     Console: jest.fn()
   };
