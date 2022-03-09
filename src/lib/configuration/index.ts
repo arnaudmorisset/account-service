@@ -1,13 +1,13 @@
 import Configuration from "../../../config.json";
 
 export interface WebConfig {
-  port: number
+  port: number;
 }
 
 export interface Config {
-  web: WebConfig
+  web: WebConfig;
 }
 
 const load = (): Config => Configuration;
 
-export default { load }
+export default { load };
