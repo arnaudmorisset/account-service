@@ -7,7 +7,9 @@
   "author": "Arnaud Morisset <arnaudmorisset@protonmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "./node_modules/typescript/bin/tsc && node .",
+    "build": "./node_modules/typescript/bin/tsc",
+    "start": "node .",
+    "dev": "yarn build && yarn start",
     "test": "jest"
   },
   "devDependencies": {
